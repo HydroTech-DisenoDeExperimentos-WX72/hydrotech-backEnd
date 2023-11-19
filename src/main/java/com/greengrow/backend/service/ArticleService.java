@@ -2,6 +2,18 @@ package com.greengrow.backend.service;
 
 import com.greengrow.backend.model.Article;
 
+/**
+ * Service interface for managing Article entities in the GreenGrow application.
+ * @author GrowGenius
+ * @version 1.0 19/11/2023
+ */
 public interface ArticleService {
-    public abstract Article createArticle(Article article);
+
+    /**
+     * Creates a new article.
+     *
+     * @param article The article to be created.
+     * @return The created article.
+     */
+    Article createArticle(Article article);
 }

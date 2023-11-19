@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller class for handling RESTful requests for articles.
+ * @author GrowGenius
+ * @version 1.0 19/11/2023
+ */
+
 @RestController
 @RequestMapping("/api/green-grow/v1")
 public class ArticleController {
@@ -18,12 +24,20 @@ public class ArticleController {
 
     private final ArticleRepository articleRepository;
 
+    /**
+     * Constructor for ArticleController.
+     * @param articleRepository The repository object used for accessing articles.
+     */
     public ArticleController(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
     }
 
     //URL: http://localhost:8080/api/green-grow/v1/articles
     //Method: GET
+    /**
+     * Method for handling GET requests for all articles.
+     * @return ResponseEntity with the list of all articles and the HTTP status code.
+     */
     @GetMapping("/articles")
     public ResponseEntity<List<Article>> getAllArticles() {
         return new ResponseEntity<List<Article>>(articleRepository.findAll(), HttpStatus.OK);
@@ -31,6 +45,11 @@ public class ArticleController {
 
     //URL: http://localhost:8080/api/green-grow/v1/articles
     //Method: POST
+    /**
+     * Method for handling POST requests for creating a new article.
+     * @param article The article object to be created.
+     * @return ResponseEntity with the created article and the HTTP status code.
+     */
     @PostMapping("/articles")
     public ResponseEntity<Article> createArticle(@RequestBody Article article) {
         try {
@@ -42,6 +61,11 @@ public class ArticleController {
         }
     }
 
+    /**
+     * Method for validating the article object.
+     * @param article The article object to be validated.
+     * @throws RuntimeException if the article object is not valid.
+     */
     private void validateArticle(Article article){
         if(article.getImagen() == null || article.getImagen().isEmpty()){
             throw new RuntimeException("La imagen del artículo es obligatoria");
