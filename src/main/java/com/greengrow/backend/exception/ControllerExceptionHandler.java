@@ -8,9 +8,21 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
 
+/**
+ * Global exception handler for the GreenGrow application.
+ * @author GrowGenius
+ * @version 1.0 19/11/2023
+ */
 @RestControllerAdvice
 public class ControllerExceptionHandler {
 
+    /**
+     * Handles ResourceNotFoundException and returns a custom error message.
+     *
+     * @param ex The ResourceNotFoundException to be handled.
+     * @param request The WebRequest associated with the exception.
+     * @return ErrorMessage containing details about the exception.
+     */
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ErrorMessage resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
@@ -23,6 +35,13 @@ public class ControllerExceptionHandler {
         return message;
     }
 
+    /**
+     * Handles ValidationException and returns a custom error message.
+     *
+     * @param ex The ValidationException to be handled.
+     * @param request The WebRequest associated with the exception.
+     * @return ErrorMessage containing details about the exception.
+     */
     @ExceptionHandler(ValidationException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ErrorMessage validationException(ValidationException ex, WebRequest request) {
@@ -35,6 +54,13 @@ public class ControllerExceptionHandler {
         return message;
     }
 
+    /**
+     * Handles general exceptions and returns a custom error message.
+     *
+     * @param ex The general exception to be handled.
+     * @param request The WebRequest associated with the exception.
+     * @return ErrorMessage containing details about the exception.
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorMessage globalExceptionHandler(Exception ex, WebRequest request) {

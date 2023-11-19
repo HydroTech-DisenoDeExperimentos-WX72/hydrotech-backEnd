@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller class for handling RESTful requests for courses.
+ * @author GrowGenius
+ * @version 1.0 19/11/2023
+ */
 @RestController
 @RequestMapping("/api/green-grow/v1")
 public class CourseController {
@@ -18,28 +23,46 @@ public class CourseController {
 
     private final CourseRepository courseRepository;
 
+    /**
+     * Constructor for CourseController.
+     * @param courseRepository The repository object used for accessing courses.
+     */
     public CourseController(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
 
     //URL: http://localhost:8080/api/green-grow/v1/courses
     //Method: GET
+    /**
+     * Method for handling GET requests for all courses.
+     * @return ResponseEntity with the list of all courses and the HTTP status code.
+     */
     @GetMapping("/courses")
     public ResponseEntity<List<Course>> getAllCourses() {
         return new ResponseEntity<List<Course>>(courseRepository.findAll(), HttpStatus.OK);
     }
 
     //GetById
+    //URL: http://localhost:8080/api/green-grow/v1/courses/{id}
+    //Method: GET
+
+    /**
+     * Method for handling GET requests for a course by id.
+     * @param id The id of the course to be returned.
+     * @return ResponseEntity with the course and the HTTP status code.
+     */
     @GetMapping("/courses/{id}")
     public ResponseEntity<Course> getCourseById(Long id) {
         return new ResponseEntity<Course>(courseRepository.findById(id).get(), HttpStatus.OK);
     }
 
-    //PENDIENTE: Agregar filterBy(algo)
-    //Filter by category + ofrecer al crear en el front
-
     //URL: http://localhost:8080/api/green-grow/v1/courses
     //Method: POST
+    /**
+     * Method for handling POST requests for creating a new course.
+     * @param course The course object to be created.
+     * @return ResponseEntity with the created course and the HTTP status code.
+     */
     @PostMapping("/courses")
     public ResponseEntity<Course> createCourse(@RequestBody Course course) {
         try {
@@ -51,7 +74,11 @@ public class CourseController {
         }
     }
 
-    //Validaciones
+    /**
+     * Method for validating the course object.
+     * @param course The course object to be validated.
+     * @throws RuntimeException if the course object is not valid.
+     */
     private void validateCourse(Course course){
         if(course.getName() == null || course.getName().isEmpty()){
             throw new RuntimeException("El nombre del curso es obligatorio");
@@ -119,12 +146,4 @@ public class CourseController {
 
 
     }
-
-    /*
-    private void existsByNameAndPrice(Course course){
-        if(courseRepository.existsByNameAndPrice(course.getName(), course.getPrice())){
-            throw new RuntimeException("Ya existe un curso con el mismo nombre y precio");
-        }
-    }
-    */
 }
