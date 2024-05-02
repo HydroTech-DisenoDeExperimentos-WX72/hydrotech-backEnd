@@ -76,8 +76,11 @@ public class Post {
     /**
      * The list of tags associated with the post.
      */
-    @ElementCollection(fetch = FetchType.EAGER)
+    /**@ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "post_tags", joinColumns = @JoinColumn(name = "post_id"))
     @Column(name = "tag", length =25, nullable=false)
     private List<String> tags;
+    **/
+    @Column(name = "tag", length = 50, nullable = false)
+    private String tag;
 }

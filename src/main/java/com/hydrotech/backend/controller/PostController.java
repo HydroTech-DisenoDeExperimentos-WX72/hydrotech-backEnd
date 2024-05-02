@@ -115,15 +115,24 @@ public class PostController {
             throw new RuntimeException("El número de comentarios debe estar entre 0 y 999999");
         }
 
-        if (post.getTags() != null) {
-            for (String tag : post.getTags()) {
+        if (post.getTag() != null) {
+            /*for (String tag : post.getTag()) {
                 if (tag == null || tag.isEmpty()) {
                     throw new RuntimeException("Las etiquetas de los post no pueden ser nulas o vacías");
                 }
                 if (tag.length() > 25) {
                     throw new RuntimeException("Cada etiqueta de post no puede tener más de 25 caracteres");
                 }
+            }*/
+
+            if (post.getTag().length() > 50) {
+                throw new RuntimeException("Las etiquetas de los post no pueden tener más de 50 caracteres");
             }
+
+            if (post.getTag().isEmpty()) {
+                throw new RuntimeException("Las etiquetas de los post no pueden ser vacías");
+            }
+
         }
 
     }
