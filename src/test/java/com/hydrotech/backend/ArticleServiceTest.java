@@ -10,11 +10,14 @@ class ArticleServiceTest {
     public void testArticle() {
         //Given
         Article article = new Article(1121314143123121L,"java.jpg", "Curso de Java", "20/12/24", "Curso de Java", "cuos.com");
+        Article article2 = new Article(1114313546315L,"java.jpg", "Curso de Kotlin", "22/12/24", "Curso de Kotlin", "cuos.com");
+
 
         //When
-        String titulo_esperado = "Cursos de Java";
+        String titulo_1 = article.getTitulo();
+        String titulo_2 = article2.getTitulo();
 
-        Assertions.assertFalse(titulo_esperado == article.getTitulo());
+        Assertions.assertFalse(titulo_1 == titulo_2);
     }
 
 }

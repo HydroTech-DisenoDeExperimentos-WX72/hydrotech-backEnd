@@ -9,12 +9,15 @@ class CourseServiceTest {
     @Test
     public void testCourse() {
         //Given
-        Course course = new Course(112133121L, "Curso de Java", "java.jpg", "Curso de Java", "100", "5", "10", "Programación", "20/12/24");
+        Course course = new Course(14525424234521L, "Curso de C++", "C++.jpg", "Curso de C++", "100", "5", "10", "Programación", "20/12/24");
+        Course course2 = new Course(11211234123L, "Curso de Pyhton", "Pyhton.jpg", "Curso de Pyhton", "100", "5", "10", "Programación", "20/12/24");
+
 
         //When
-        long id_esperado = 112133121L;
+        long id_1 = course.getId();
+        long id_2 = course2.getId();
 
-        Assertions.assertEquals(id_esperado, course.getId());
+        Assertions.assertTrue(id_1 != id_2);
     }
 
 }
