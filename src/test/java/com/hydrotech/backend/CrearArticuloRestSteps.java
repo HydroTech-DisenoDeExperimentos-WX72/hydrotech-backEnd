@@ -31,10 +31,6 @@ public class CrearArticuloRestSteps {
         requestBody.put("imagen", imagen);
 
         request = given().contentType("application/json").body(requestBody.toString());
-        response = request.when().post("/api/articulos");
-
-
-        request = given().contentType("application/json").body("{\"titulo\": \"" + titulo + "\", \"descripcion\": \"" + descripcion + "\" }");
         response = request.when().post("/articles");
     }
 
