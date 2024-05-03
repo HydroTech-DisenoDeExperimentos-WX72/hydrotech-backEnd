@@ -9,10 +9,10 @@ class ArticleServiceTest {
     @Test
     public void testArticle() {
         //Given
-        Article article = new Article(1121314143123121L,"java.jpg", "Curso de Java", "20/12/24", "Curso de Java", "cuos.com");
+        Article article = new Article(1121314143123121L,"plantacion.jpg", "Curso de plantacion de papas", "20/12/24", "Curso de plantacion de papas", "cuos.com");
 
         //When
-        String titulo_esperado = "Cursos de Java";
+        String titulo_esperado = "Cursos de plantacion de papas";
 
         Assertions.assertFalse(titulo_esperado == article.getTitulo());
     }
